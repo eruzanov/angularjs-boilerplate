@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>angularjs-boilerplate</title>
-</head>
-<body ng-app="app">
-    <gretting></gretting>
-</body>
+  </head>
+  <body class="container" ng-app="app">
+    <div ng-controller="listUsers">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="user in users | limitTo : limit : (currentPage - 1) * limit">
+          <td>{{user.name.title}} {{user.name.firts}} {{user.name.last}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.dob.date | date}}</td>
+        </tr>
+        </tbody>
+      </table>
+      <pagination
+        num-pages="users.length / limit"
+        current-page="currentPage"
+      ></pagination>
+    </div>
+  </body>
 </html>
